@@ -1,0 +1,21 @@
+ <div class="page-header">
+<%= @user.email %>
+
+<p>Questions</p>
+  <% @user.questions.each do |question| %>
+  <ul>
+    <%= link_to "#{question.title}", question_path(question.id) %>
+  </ul>
+
+  <%end%>
+
+
+<p>Answers</p>
+  <% @user.answers.each do |answer| %>
+  <ul>
+    <%= link_to "#{answer.content}", question_path(answer.question_id)%>
+  </ul>
+  <%end%>
+
+
+
