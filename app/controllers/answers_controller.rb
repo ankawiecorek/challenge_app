@@ -2,26 +2,60 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question
 
-  def create
-    @answer = Answer.new(answer_params)
-    @answer.user = current_user
-    @answer.question = @question
 
+  respond_to :html, :json 
+
+  def new
+    @question = Question.find(params[:question_id])
+    @answer = Answer.new
+  end
+
+  def create
+    @user = current_user
+    @question = Question.find(params[:question_id])
+    @answer = @user.answers.new(answer_params)
+    @answer.question_id = @question.id
     if @answer.save
-      redirect_to question_path(@question), notice: "Answer was successfully created."
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Answer posted!"
+          redirect_to question_path(@question)
+        end
+        format.js
+      end
     else
-      redirect_to question_path(@question), alert: "There was an error when adding answer."
+      respond_to do |format|
+        format.html do
+          flash[:alert] = "Error. Answer not posted!"
+          redirect_to :back
+        end
+        format.js
+      end
     end
   end
 
-  private
+  def show
+    @question = Answer.find(params[:id])
+  end
 
-    def set_question
+  def update
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    if @answer.update(answer_params)
+      flash[:notice] = "Answer updated."
+      respond_with @answer
+    else
+      flash[:alert] = "Error. Answer not updated."
+      redirect_to :back
+    end
+  end
+
+private
+  def set_question
       @question = Question.find(params[:question_id])
-    end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def answer_params
-      params.require(:answer).permit(:contents)
-    end
+  def answer_params
+    params.require(:answer).permit(:content)
+  end
 end
