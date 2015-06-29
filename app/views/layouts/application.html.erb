@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+  <title>Stackoverclone Challenge</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+<body role="document">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/questions">Challenge App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/questions">Home</a></li>
+            <li><a href="questions/about">About</a></li>
+            <li><a href="questions/contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                    <li><%= link_to "Sign out", destroy_user_session_path, data: {method: "delete"} %></li>
+                    <li><%= link_to "Edit", edit_user_registration_path %></li>
+                <% else %>
+                    <li><%= link_to "Sign in", new_user_session_path %></li>
+                    <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  </nav>
+    <div class="container theme-showcase" role="main">
+      <div class="jumbotron">
+        <h1>Stackoverclone</h1>
+        <p>The application is a question and answer site with features similar to Stack Overflow.</p>
+      </div>
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+    <%= yield %>
+  </div>
+</body>
+</html>
