@@ -1,0 +1,8 @@
+<li id="question_<%= question.id %>"><%= link_to question.title, question_path(question) %> <%= link_to '[delete]', question_path(question), method: :delete, remote: true %> 
+	<p>Created on</p>
+  		<%= l(question.created_at, format: :long) %>
+  	<p> by </p>
+  		<%= link_to question.user.email, user_path(question.user) %>
+</li>
+	
+

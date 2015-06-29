@@ -1,0 +1,37 @@
+<div class="question-title col-xs-12">
+  <h2><%= @question.title %></h2>
+</div>
+<div class="col-xs-8">
+  <div class="question-content">
+    <p><%= @question.content %></p>
+  </div>
+  <%= link_to 'Answer', new_question_answer_path(@question), id: "new_answer_link", remote: true %>
+  <div class="best-answer">
+    <% @question.answers.each do |answer| %>
+      <% if @question.best_answer_id == answer.id %>
+        <div class="well">
+          <div class="col-xs-3 col-md-3">
+            <div class="row">
+              <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+            </div>
+            <div class="row">
+              <p>0 votes</p>
+            </div>
+            <div class="row">
+              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            </div>
+          </div>
+
+            <p>Accepted:</p>
+            <p><%= answer.content %></p>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="answers">
+    <%= render @question.answers %>
+  </div>
+</div>
+
+
