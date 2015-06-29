@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 # core
-gem 'rails', '4.1.1'
-gem 'sqlite3'
+gem 'rails'
+gem 'pg'
 gem 'devise'
 
 # frontend
