@@ -1,0 +1,7 @@
+<%= form_for [@question, @answer], remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_field :content, class: "form-control" %>
+  </div>
+  <%= f.submit "Answer", class: "btn" %>
+<% end %>
