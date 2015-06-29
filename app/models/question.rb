@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
-  belongs_to :user
   has_many :answers
+  belongs_to :user
   validates :title, presence: true
-  validates :contents, presence: true
+  validates :content, presence: true
 end
