@@ -56,6 +56,6 @@ private
   end
 
   def answer_params
-    params.require(:answer).permit(:content)
+    params.require(:answer).permit(:contents)
   end
 end
