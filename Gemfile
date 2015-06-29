@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'pg'
 gem 'devise'
+gem 'acts_as_votable', '~> 0.10.0'
 
 # frontend
 gem 'slim-rails'
