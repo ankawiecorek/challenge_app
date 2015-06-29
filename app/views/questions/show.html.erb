@@ -4,6 +4,7 @@
 <div class="col-xs-8">
   <div class="question-content">
     <p><%= @question.content %></p>
+    <% if current_user == @question.user %>
     <%= best_in_place @question, :title %>
   </div>
   <%= link_to 'Answer', new_question_answer_path(@question), id: "new_answer_link", remote: true %>
@@ -27,6 +28,7 @@
       <p><%= answer.content %></p>
 
     </div>
+    <% end %>
     <% end %>
     <% end %>
   </div>
