@@ -1,36 +1,43 @@
 source 'https://rubygems.org'
 
-# core
 gem 'rails'
 gem 'pg'
-gem 'devise'
-gem 'acts_as_votable', '~> 0.10.0'
 
-# frontend
-gem 'slim-rails'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
+gem 'best_in_place'
 
-# doc
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'devise'
+gem 'omniauth-github'
 
-# development
+
+
 group :development do
-  gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'byebug'
+  gem 'web-console'
+  gem "letter_opener"
 end
 
-# testing
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'pry'
+end
+
 group :test do
-  gem "database_cleaner",   "~> 1.2.0"
-  gem "capybara",           github: "jnicklas/capybara" # master until rspec3 fixes are released #~> 2.2.0"
-  gem "poltergeist",        "~> 1.5.0"
-  gem "factory_girl_rails", "~> 4.2.0"
-  gem "cucumber-rails",     "~> 1.4.1", require: false
-  gem "factory_girl"
-  gem "rspec-rails"
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
