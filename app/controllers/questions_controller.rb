@@ -24,7 +24,9 @@ class QuestionsController < ApplicationController
   def create
     @user = current_user
     @question = @user.questions.new(question_params)
+    @question.user.points -= 10
     if @question.save
+      @question.user.save
       respond_to do |format|
         format.html do
           flash[:notice] = "Question successfully added."
