@@ -6,6 +6,7 @@
     <p><%= @question.content %></p>
     <% if current_user == @question.user %>
     <%= best_in_place @question, :title %>
+    <% end %>
   </div>
   <%= link_to 'Answer', new_question_answer_path(@question), id: "new_answer_link", remote: true %>
   <div class="best-answer">
@@ -28,7 +29,6 @@
       <p><%= answer.content %></p>
 
     </div>
-    <% end %>
     <% end %>
     <% end %>
   </div>
