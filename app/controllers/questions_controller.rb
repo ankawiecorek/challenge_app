@@ -46,8 +46,11 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update(question_params)
+      @answer = Answer.find(@question.best_answer_id)
       flash[:notice] = "Answer updated."
       respond_with @question
+      @answer.user.points += 25
+      @answer.user.save
     else
       flash[:alert] = "Error. Answer not updated."
       redirect_to :back
