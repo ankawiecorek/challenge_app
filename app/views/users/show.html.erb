@@ -1,5 +1,5 @@
  <div class="page-header">
-<%= @user.email %>
+<%= @user.login %>
 
 <p>Questions</p>
   <% @user.questions.each do |question| %>
@@ -16,6 +16,14 @@
     <%= link_to "#{answer.content}", question_path(answer.question_id)%>
   </ul>
   <%end%>
+
+  <p>Points</p>
+  <%= @user.points %>
+
+
+
+
+
 
 
 
