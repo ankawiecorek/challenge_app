@@ -14,6 +14,7 @@ gem 'best_in_place'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'devise'
 gem 'omniauth-github'
+gem 'github-markdown'
 
 
 

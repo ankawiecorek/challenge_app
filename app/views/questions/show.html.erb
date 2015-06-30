@@ -3,7 +3,7 @@
 </div>
 <div class="col-xs-8">
   <div class="question-content">
-    <p><%= @question.content %></p>
+    <p><%= GitHub::Markdown.render_gfm(@question.content).html_safe %></p>
     <% if current_user == @question.user %>
     <%= best_in_place @question, :title %>
     <% end %>

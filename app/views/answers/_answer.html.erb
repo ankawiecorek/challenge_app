@@ -11,7 +11,7 @@
       <%= link_to '<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>'.html_safe, vote_path(answer, { type: :down }), id: "down", method: :patch, remote: true %>
     </div>
   </div>
-  <%= answer.content%>
+  <%= GitHub::Markdown.render_gfm(answer.content).html_safe %>
   <% if current_user == @question.user %>
   <p><%= link_to "Accept", question_path(@question, question: {best_answer_id: answer.id}), data: { method: "patch" }%></p>
   <% end %>
