@@ -8,7 +8,9 @@
     <%= best_in_place @question, :title %>
     <% end %>
   </div>
+  <% if @question.best_answer_id == nil %>
   <%= link_to 'Answer', new_question_answer_path(@question), id: "new_answer_link", remote: true %>
+  <% end %>
   <div class="best-answer">
     <% @question.answers.each do |answer| %>
     <% if @question.best_answer_id == answer.id %>
