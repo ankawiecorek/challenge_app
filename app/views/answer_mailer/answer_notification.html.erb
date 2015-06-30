@@ -1,0 +1,8 @@
+<h1>Stack Overflow Question Answered!</h1>
+
+<p>
+  <%= @answer.question.user.email %>, Your question has been answered
+</p>
+
+
+<%= link_to 'View The Answer', question_path(@answer.question) %>
