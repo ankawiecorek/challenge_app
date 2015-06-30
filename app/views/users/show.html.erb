@@ -21,6 +21,11 @@
   <p>Points</p>
   <%= @user.points %>
 
+  <% if @user.points >= 1000 %>
+    <%= image_tag 'superstar.png' %>
+    <% end %>
+
+
 
 
 
