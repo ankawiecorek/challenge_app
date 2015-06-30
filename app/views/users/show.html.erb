@@ -1,5 +1,6 @@
  <div class="page-header">
 <%= @user.login %>
+ <%= image_tag @user.avatar.url(:thumb) %>
 
 <p>Questions</p>
   <% @user.questions.each do |question| %>
