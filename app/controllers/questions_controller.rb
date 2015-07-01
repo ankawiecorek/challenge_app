@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
       @question.user.save
       respond_to do |format|
         format.html do
-          flash[:notice] = "Question successfully added."
+          flash[:success] = "Question successfully added."
           redirect_to questions_path
         end
         format.js
@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     if @question.update(question_params)
       @answer = Answer.find(@question.best_answer_id)
-      flash[:notice] = "Answer updated."
+      flash[:success] = "Answer updated."
       respond_with @question
       @answer.user.points += 25
       @answer.user.save
@@ -62,6 +62,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question = Question.destroy(params[:id])
       respond_to do |format|
+        flash[:danger] = "Your question was removed."
         format.html { redirect_to questions_path }
         format.js
       end

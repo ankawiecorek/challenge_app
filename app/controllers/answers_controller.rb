@@ -16,6 +16,7 @@ class AnswersController < ApplicationController
     @answer = @user.answers.new(answer_params)
     @answer.question_id = @question.id
     if @answer.save
+      @answer.user.save
       respond_to do |format|
         format.html do
           flash[:notice] = "Answer posted!"
