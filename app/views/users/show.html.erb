@@ -1,11 +1,16 @@
  <div class="page-header">
 <%= @user.login %>
- <%= image_tag @user.avatar.url(:thumb) %>
+<% if @user.avatar? %>
+<img class="img-thumbnail" src="<%= @user.avatar.url%>"  style="width: 100px; height: 100px;">
+
+<% else %>
+<span class="glyphicon glyphicon-user" aria-hidden="true"  ></span>
+<% end %>
 
 <p>Questions</p>
   <% @user.questions.each do |question| %>
   <ul>
-    <%= link_to "#{question.title}", question_path(question.id) %>
+    <%= link_to GitHub::Markdown.render_gfm("#{question.title}").html_safe, question_path(question.id) %>
   </ul>
 
   <%end%>
@@ -14,12 +19,14 @@
 <p>Answers</p>
   <% @user.answers.each do |answer| %>
   <ul>
-    <%= link_to "#{answer.content}", question_path(answer.question_id)%>
+
+    <%= link_to GitHub::Markdown.render_gfm("#{answer.content}").html_safe, question_path(answer.question_id)%>
   </ul>
   <%end%>
 
   <p>Points</p>
   <%= @user.points %>
+  
 
   <% if @user.points >= 1000 %>
     <%= image_tag 'superstar.png' %>

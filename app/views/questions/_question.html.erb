@@ -1,13 +1,11 @@
+
 <li id="question_<%= question.id %>"><%= link_to question.title, question_path(question) %> 
 <% if current_user == question.user %>
-<%= link_to '[delete]', question_path(question), method: :delete, remote: true %> 
+ <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, question_path(question), method: :delete, remote: true %> 
 
 <% end %>
 
-	<p>Created on</p>
-  		<%= l(question.created_at, format: :long) %>
-  	<p> by </p>
-  		<%= link_to question.user.username, user_path(question.user) %>
+<p>Created on <%= l(question.created_at, format: :long) %> by <%= link_to question.user.username, user_path(question.user) %> </p>
 </li>
 	
 

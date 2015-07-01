@@ -1,9 +1,9 @@
+<% if user_signed_in? %>
 <h2>
 <%= link_to "New Question", new_question_path, id: "new_question_link", remote: true %>
 </h2>
 <h3>Questions</h3>
-
-
 <div class="col-xs-12 questions">
   <%= render @questions.reverse %>
 </div>
+<% end %>

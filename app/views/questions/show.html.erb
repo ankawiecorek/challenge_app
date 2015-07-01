@@ -1,12 +1,18 @@
 <div class="question-title col-xs-12">
-  <h2><%= @question.title %></h2>
+    <% if current_user == @question.user %>
+    <h2> <%= best_in_place @question, :title %> </h2>
+   <span class="help-block">Click on title to edit.</span>
+   <% else %>
+
+    <h2><%= @question.title %></h2>
+    <% end %>
+  <p>Created on <%= l(@question.created_at, format: :long) %> by <%= link_to @question.user.username, user_path(@question.user) %> </p>
+</li>
 </div>
 <div class="col-xs-8">
   <div class="question-content">
     <p><%= GitHub::Markdown.render_gfm(@question.content).html_safe %></p>
-    <% if current_user == @question.user %>
-    <%= best_in_place @question, :title %>
-    <% end %>
+
   </div>
   <% if @question.best_answer_id == nil %>
   <%= link_to 'Answer', new_question_answer_path(@question), id: "new_answer_link", remote: true %>
@@ -20,7 +26,7 @@
           <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
         </div>
         <div class="row">
-          <p>0 votes</p>
+          <p id="vote<%= answer.id %>"><%= answer.get_likes.size %></p>
         </div>
         <div class="row">
           <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
@@ -29,6 +35,7 @@
 
       <p>Accepted:</p>
       <p><%= answer.content %></p>
+      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 
     </div>
     <% end %>

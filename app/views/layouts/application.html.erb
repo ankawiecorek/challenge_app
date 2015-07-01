@@ -26,14 +26,17 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/questions">Home</a></li>
-            <li><a href="questions/about">About</a></li>
-            <li><a href="questions/contact">Contact</a></li>
+            <% if user_signed_in? %>
+            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Leaderboard", leaderboard_path %>
+            <% end %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <% if user_signed_in? %>
                     <li><%= link_to "Sign out", destroy_user_session_path, data: {method: "delete"} %></li>
                     <li><%= link_to "Edit", edit_user_registration_path %></li>
+                    
                 <% else %>
                     <li><%= link_to "Sign in", new_user_session_path %></li>
                     <li><%= link_to "Sign up", new_user_registration_path %></li>
@@ -50,8 +53,9 @@
         <h1>Stackoverclone</h1>
         <p>The application is a question and answer site with features similar to Stack Overflow.</p>
       </div>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
     <%= yield %>
   </div>
 </body>
