@@ -1,5 +1,5 @@
 <% if @question.best_answer_id != answer.id %>
-<div class="well">
+<div class="well row">
   <div class="col-xs-4 col-lg-10">
     <div class="row">
       <%= link_to '<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>'.html_safe, vote_path(answer, { type: :up }), id: "up", method: :patch, remote: true %>
@@ -10,8 +10,14 @@
     <div class="row">
       <%= link_to '<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>'.html_safe, vote_path(answer, { type: :down }), id: "down", method: :patch, remote: true %>
     </div>
+
   </div>
+
+
+</li>
   <%= GitHub::Markdown.render_gfm(answer.content).html_safe %>
+
+  <p>Answered on <%= l(answer.created_at, format: :long) %> by <%= link_to answer.user.username, user_path(answer.user) %> </p>
   <% if current_user == @question.user %>
   <p><%= link_to "Accept", question_path(@question, question: {best_answer_id: answer.id}), data: { method: "patch" }%></p>
   <% end %>
