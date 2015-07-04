@@ -1,4 +1,4 @@
-
+<div class="well">
 <li id="question_<%= question.id %>"><%= link_to question.title, question_path(question) %> 
 <% if current_user == question.user %>
  <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, question_path(question), method: :delete, remote: true %> 
@@ -9,3 +9,4 @@
 </li>
 	
 
+</div>
