@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
+
 gem 'rails'
 gem 'pg'
 
@@ -17,6 +19,8 @@ gem 'omniauth-github'
 gem 'github-markdown'
 gem 'rmagick'
 gem 'paperclip', '~> 4.3'
+
+gem 'puma'
 
 
 
