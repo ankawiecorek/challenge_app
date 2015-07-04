@@ -1,36 +1,46 @@
- <div class="page-header">
-<%= @user.login %>
-<% if @user.avatar? %>
+<table class="table table-striped">
+
+  <th>Name</th>
+  <th>Questions</th>
+    <th>Answers</th>
+      <th>Points</th>
+<tr>
+<td> <%= @user.login %> <% if @user.avatar? %>
 <img class="img-thumbnail" src="<%= @user.avatar.url%>"  style="width: 100px; height: 100px;">
 
 <% else %>
 <span class="glyphicon glyphicon-user" aria-hidden="true"  ></span>
 <% end %>
-
-<p>Questions</p>
-  <% @user.questions.each do |question| %>
-  <ul>
+</td>
+    <td> <% @user.questions.each do |question| %>
+  <o>
     <%= link_to GitHub::Markdown.render_gfm("#{question.title}").html_safe, question_path(question.id) %>
-  </ul>
+  </p>
 
   <%end%>
+  </td>
 
-
-<p>Answers</p>
-  <% @user.answers.each do |answer| %>
-  <ul>
+   <td>  <% @user.answers.each do |answer| %>
+  <p>
 
     <%= link_to GitHub::Markdown.render_gfm("#{answer.content}").html_safe, question_path(answer.question_id)%>
-  </ul>
+  </p>
   <%end%>
-
-  <p>Points</p>
+  </td>
+    <td>
   <%= @user.points %>
   
 
   <% if @user.points >= 1000 %>
     <%= image_tag 'superstar.png' %>
     <% end %>
+
+
+</td>
+
+</table>
+
+
 
 
 
